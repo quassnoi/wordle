@@ -1,23 +1,15 @@
 SELECT  target, guess,
-        fn_match_text(fn_match(fn_word_to_bigint(guess), fn_word_to_bigint(target)))
+        CASE
+        WHEN fn_match_text(fn_match(
+                fn_word_to_bigint(guess),
+                fn_word_to_bigint(target))
+                ) = colors
+        THEN
+                '✅'
+        ELSE    '❌'
+        END
 FROM    (
         VALUES
-        ('AAABB', 'BBAAA'),
-        ('GHOTI', 'GHOTI'),
-        ('REBUS', 'RUBUS'),
-        ('BANAL', 'ANNAL'),
-        ('BANAL', 'UNION'),
-        ('BANAL', 'ALLOY'),
-        ('BANAL', 'BANAL'),
-        ('ABBEY', 'ABBEY'),
-        ('ABBEY', 'ABYSS'),
-        ('ABBEY', 'KEBAB'),
-        ('ABBEY', 'BABES'),
-        ('ABBEY', 'OPENS'),
-        ('DUVET', 'ADDED')
-        ) AS q (target, guess)
-EXCEPT
-VALUES
         ('AAABB', 'BBAAA', 'YYGYY'),
         ('GHOTI', 'GHOTI', 'GGGGG'),
         ('REBUS', 'RUBUS', 'GBGGG'),
@@ -31,3 +23,6 @@ VALUES
         ('ABBEY', 'BABES', 'YYGGB'),
         ('ABBEY', 'OPENS', 'BBYBB'),
         ('DUVET', 'ADDED', 'BYBGB')
+        ) AS q (target, guess, colors)
+
+

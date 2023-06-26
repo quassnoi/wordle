@@ -1,4 +1,4 @@
-WITH    encoded AS
+WITH    encoded
         (
         SELECT  fn_word_to_bigint(word) AS word
         FROM    wordle

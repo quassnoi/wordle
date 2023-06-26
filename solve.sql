@@ -1,7 +1,8 @@
 WITH    guesses (guess, colors) AS
         (
         VALUES
-        ('SERAI', 'BBBYB')
+        ('SERAI', 'BYYBB'),
+        ('ROUEN', 'GGBGB')
         ),
         valid AS MATERIALIZED
         (
